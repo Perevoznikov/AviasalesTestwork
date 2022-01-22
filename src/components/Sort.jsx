@@ -1,7 +1,7 @@
 import React from 'react';
 import SortItem from './SortItem';
 
-const Sort = ({sort, setSort}) => {
+const Sort = ({value, onChange}) => {
   const sortFields = [
     {key: 'price', title: 'Самый дешевый'},
     {key: 'duration', title: 'Самый быстрый'},
@@ -12,8 +12,8 @@ const Sort = ({sort, setSort}) => {
       {sortFields.map((field) => {
         return <SortItem
           key={field.key}
-          isActive={field.key===sort}
-          onClick={() => {setSort(field.key)}}
+          isActive={field.key===value}
+          onClick={() => {onChange(field.key)}}
         >
           {field.title}
         </SortItem>

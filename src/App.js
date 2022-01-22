@@ -18,7 +18,7 @@ function App() {
   const [isEndTickets, setIsEndTickets] = useState(false)
   const [sort, setSort] = useState('price')
   const [filter, setFilter] = useState(['-1']) //{'-1':'Все', '0':'Без пересадок', '1':'1 пересадка', ...}
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingApp, setIsLoadingApp] = useState(true)
   const filterFields = useCalcFilter(tickets)
   const filteredTickets = useFilter(filter, tickets)
   const sortedTickets = useSort(sort, filteredTickets)
@@ -30,13 +30,13 @@ function App() {
     try {
       const _searchId = await getSearchId()
       setSearchId(_searchId)
-      const {tickets: _tickets, stop} = await getTickets(_searchId)
-      setTickets(_tickets.slice(0, 5))
+      const {tickets, stop} = await getTickets(_searchId)
+      setTickets(tickets.slice(0, 5))
       setIsEndTickets(stop)
     } catch (e) {
       alert(e)
     } finally {
-      setIsLoading(false)
+      setIsLoadingApp(false)
     }
   }, [])
 
@@ -53,7 +53,7 @@ function App() {
 
   return (
     <>
-      {isLoading
+      {isLoadingApp
         ? <h1>Идет загрузка приложения</h1>
         : <div className="app">
           <div className="app__header">
@@ -61,10 +61,10 @@ function App() {
           </div>
           <div className="app__body">
             <div className="app__sidebar">
-              <Filter filter={filter} setFilter={setFilter} filterFields={filterFields}/>
+              <Filter value={filter} onChange={setFilter} fields={filterFields}/>
             </div>
             <div className="app__tape">
-              <Sort sort={sort} setSort={setSort}/>
+              <Sort value={sort} onChange={setSort}/>
               <ListTickets tickets={sortedTickets}/>
               <Button onClick={getMore} isLoading={isLoadingTickets} disabled={isEndTickets}/>
             </div>
