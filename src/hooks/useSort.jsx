@@ -1,5 +1,9 @@
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 
+// сортирует массив билетов по полям:
+// стоимость,
+// время в пути (туда + обратно),
+// оптимальный (стоимоть * время)
 const useSort = (sort, array) => {
   return useMemo(() => {
     switch (sort) {

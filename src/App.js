@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
-import './App.css';
-import Header from './components/Header';
-import Filter from './components/Filter';
-import Sort from './components/Sort';
-import Button from './components/UI/Button';
+import cl from './App.module.css';
+import Header from './components/Header/Header';
+import Filter from './components/Filter/Filter';
+import Sort from './components/Sort/Sort';
+import Button from './components/UI/Button/Button';
 import TicketsService from './api/TicketsService';
-import ListTickets from './components/ListTickets';
+import ListTickets from './components/ListTickets/ListTickets';
 import useSort from './hooks/useSort';
 import useFilter from './hooks/useFilter';
 import useCalcFilter from './hooks/useCalcFilter';
@@ -19,9 +19,11 @@ function App() {
   const [sort, setSort] = useState('price')
   const [filter, setFilter] = useState(['-1']) //{'-1':'Все', '0':'Без пересадок', '1':'1 пересадка', ...}
   const [isLoadingApp, setIsLoadingApp] = useState(true)
+
   const filterFields = useCalcFilter(tickets)
   const filteredTickets = useFilter(filter, tickets)
   const sortedTickets = useSort(sort, filteredTickets)
+
   const [getSearchId, isLoadingSearchId, errorSearchId] = useFetch(TicketsService.getSearchId)
   const [getTickets, isLoadingTickets, errorTickets] = useFetch(TicketsService.getTickets)
 
@@ -31,7 +33,7 @@ function App() {
       const _searchId = await getSearchId()
       setSearchId(_searchId)
       const {tickets, stop} = await getTickets(_searchId)
-      setTickets(tickets.slice(0, 5))
+      setTickets(tickets)
       setIsEndTickets(stop)
     } catch (e) {
       alert(e)
@@ -42,8 +44,8 @@ function App() {
 
   const getMore = async () => {
     try {
-      const {tickets: _tickets, stop} = await getTickets(searchId)
-      setTickets([...tickets, ..._tickets.slice(0, 5)])
+      const {tickets: more_tickets, stop} = await getTickets(searchId)
+      setTickets([...tickets, ...more_tickets])
       setIsEndTickets(stop)
       scroll.scrollToBottom({duration: 500});
     } catch (e) {
@@ -55,15 +57,15 @@ function App() {
     <>
       {isLoadingApp
         ? <h1>Идет загрузка приложения</h1>
-        : <div className="app">
-          <div className="app__header">
+        : <div className={cl.container}>
+          <div className={cl.header}>
             <Header/>
           </div>
-          <div className="app__body">
-            <div className="app__sidebar">
+          <div className={cl.body}>
+            <div className={cl.sidebar}>
               <Filter value={filter} onChange={setFilter} fields={filterFields}/>
             </div>
-            <div className="app__tape">
+            <div className={cl.tape}>
               <Sort value={sort} onChange={setSort}/>
               <ListTickets tickets={sortedTickets}/>
               <Button onClick={getMore} isLoading={isLoadingTickets} disabled={isEndTickets}/>

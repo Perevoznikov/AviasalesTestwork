@@ -1,5 +1,6 @@
-import React from 'react';
-import SortItem from './SortItem';
+import React, {memo} from 'react';
+import cl from './Sort.module.css';
+import SortItem from '../SortItem/SortItem';
 
 const Sort = ({value, onChange}) => {
   const sortFields = [
@@ -8,7 +9,7 @@ const Sort = ({value, onChange}) => {
     {key: 'optimum', title: 'Оптимальный'}
   ]
   return (
-    <div className="sort">
+    <div className={cl.container}>
       {sortFields.map((field) => {
         return <SortItem
           key={field.key}
@@ -22,4 +23,4 @@ const Sort = ({value, onChange}) => {
   );
 };
 
-export default Sort;
+export default memo(Sort);

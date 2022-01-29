@@ -1,0 +1,65 @@
+.container{
+    position: relative;
+    border-radius: 8px;
+    height: 60px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    transition: box-shadow 0.1s linear;
+    border: none;
+    font-size: 16px;
+}
+
+.container:hover{
+    box-shadow: 3px 3px 10px 0 rgba(34, 60, 80, 0.2);
+}
+
+.container:disabled{
+    background-color: var(--light-gray-color);
+    color: var(--dark-gray-color);
+    cursor: auto;
+}
+
+.spinner {
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    width: 40px;
+    height: 40px;
+}
+
+.spinner .path {
+    stroke: #fff;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}

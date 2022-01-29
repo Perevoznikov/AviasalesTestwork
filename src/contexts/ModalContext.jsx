@@ -4,21 +4,19 @@ import {createContext} from 'react';
 export const ModalContext = createContext({})
 
 export const ModalProvider = ({children}) => {
-  const [ModalElement, setModalElement] = useState(null)
-  const [isOpen, setIsOpen] = useState(false)
+  const [ModalElements, setModalElements] = useState([])
 
   const openModal = (modal, content) => {
    const ModalReactElement = React.createElement(
       modal,
-      {content: content, ...modalVariables},
+      {content: content, key: Date.now(), ...modalVariables},
       null
     )
-    setModalElement(ModalReactElement)
-    setIsOpen(true)
+    setModalElements([...ModalElements, ModalReactElement])
   }
 
   const closeModal = () => {
-    setIsOpen(false)
+    setModalElements([...ModalElements])
   }
 
   const modalVariables = {openModal, closeModal}
@@ -26,7 +24,7 @@ export const ModalProvider = ({children}) => {
   return (
     <ModalContext.Provider value={modalVariables}>
       {children}
-      {(isOpen)?ModalElement:null}
+      {ModalElements}
     </ModalContext.Provider>
   );
 };

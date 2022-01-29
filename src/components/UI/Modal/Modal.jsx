@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
+import cl from './Modal.module.css';
 
 const Modal = ({content, closeModal}) => {
   const [startClosing, setStartClosing] = useState(false)
@@ -8,14 +9,13 @@ const Modal = ({content, closeModal}) => {
     e.stopPropagation()
     setStartClosing(true)
 
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       closeModal()
-      clearTimeout(timer)
     }, 300)
   }
 
-  let modalClass = (startClosing) ? 'modal modal-exiting' : 'modal'
-  let modalBodyClass = (startClosing) ? 'modal__body modal__body-exiting' : 'modal__body'
+  let modalClass = (startClosing) ? `${cl.container} ${cl.containerExiting}` : cl.container
+  let modalBodyClass = (startClosing) ? `${cl.body} ${cl.bodyExiting}` : cl.body
 
   return (
     <div className={modalClass} onClick={close}>
@@ -26,4 +26,4 @@ const Modal = ({content, closeModal}) => {
   );
 };
 
-export default Modal;
+export default memo(Modal);

@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 import {getTitleFromCountStops} from '../utils';
 
 const useCalcFilter = (array) => {
@@ -7,10 +7,10 @@ const useCalcFilter = (array) => {
     if (array.length === 0) return filter //Если пустой массив, выходим со знач. по умолчанию
 
     array.forEach((item) => {
-      let countStops = item.segments[0].stops.length // Кол-во пересадок
+      let countStops = item.segments[0].stops.length // кол-во пересадок
       if (countStops.toString() in filter) return
 
-      let title = getTitleFromCountStops(countStops) //Формируем заголовок
+      let title = getTitleFromCountStops(countStops) //Формируем заголовок в соответствии с количеством пересадок
       filter[countStops] = title
     })
 

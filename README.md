@@ -1,70 +1,62 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Aviasales Testwork
 
-## Available Scripts
+Тестовое задание от компании Aviasales. Список билетов с фильтрами и сортировкой.
 
-In the project directory, you can run:
+[Перейти к DEMO](https://avisales-testwork.vercel.app/)
+ 
+## О проекте
 
-### `npm start`
+![Screen Shot](readme/img/Aviasales.JPG)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Тестовое задание было написано на React. Билеты асинхронно загружаются с тестового сервера компании порциями по 5 шт. 
 
-### `npm test`
+## Что было реализовано
+**1. Фильтр по количеству пересадок**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- поля фильтра генерируются в зависимости от списка билетов
 
-### `npm run build`
+**2. Сортировка билетов**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **по цене** (от дешевых к дорогим)
+- **по времени в пути** (время туда + время обратно) (от быстрых к более долгим)
+- **оптимальный** (считается кф-т - время * стоимость; чем ниже кф-т, тем выше показывается билет)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**3. Асинхронная подгрузка билетов**
+> кнопка "Показать еще 5 билетов"
+- во время загрузки на кнопке появляется **loader**
+- после загрузки страница автоматически прокручивается вниз
+- если загружены все билеты, кнопка становится неактивной
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**4. Билет в модальном окне**
+> клик по билету открывает его в модальном окне
 
-### `npm run eject`
+**5. Вспомогательные функции**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- функция склонения слов (1 пересадк**а**, 2 пересад**ки**, 5 пересад**ок**)
+- функции для работы с датой
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Для запуска
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Клонируем репозиторий
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```sh
+git clone https://github.com/Perevoznikov/avisales_testwork.git
+```
 
-## Learn More
+2. Устанавливаем необходимые зависимости
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sh
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Запускаем сборку проекта
 
-### Code Splitting
+```sh
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Authors
+[Perevoznikov Vladimir](https://github.com/Perevoznikov/) 

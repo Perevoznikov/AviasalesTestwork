@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-transform: uppercase;
+    border-right: 2px solid #eee;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.05s linear, border-color 0.05s linear;
+}
+
+.container:last-of-type{
+    border-right: none;
+}
+
+.container:hover, .active{
+    background-color: var(--primary-color);
+    color: #fff;
+    border-right-color: var(--primary-color);
+}
+
+@media screen and (max-width: 456px) {
+    .container{
+        font-size: 12px;
+        text-align: center;
+    }
+}

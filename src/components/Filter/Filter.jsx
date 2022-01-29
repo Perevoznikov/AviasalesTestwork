@@ -1,6 +1,7 @@
-import React from 'react';
-import FilterItem from './FilterItem';
-import {removeItemInArray} from '../utils';
+import React, {memo} from 'react';
+import cl from './Filter.module.css';
+import FilterItem from '../FilterItem/FilterItem';
+import {removeItemInArray} from '../../utils';
 
 const Filter = ({value, onChange, fields}) => {
 
@@ -25,9 +26,9 @@ const Filter = ({value, onChange, fields}) => {
   }
 
   return (
-    <div className="filters">
-      <h3 className="filters__title">Количество пересадок</h3>
-      <div className="filters__options">
+    <div className={cl.container}>
+      <h3 className={cl.title}>Количество пересадок</h3>
+      <div className={cl.options}>
         {Object.keys(fields).sort().map((key) => {
           return <FilterItem
             key={key}
@@ -42,4 +43,4 @@ const Filter = ({value, onChange, fields}) => {
   );
 };
 
-export default Filter;
+export default memo(Filter);

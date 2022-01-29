@@ -1,0 +1,45 @@
+.container{
+    width: 960px;
+    height: 100%;
+    background-color: #F3F7FA;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+
+    --primary-color: #2196F3;
+    --dark-gray-color: #4A4A4A;
+    --light-gray-color: #A0B0B9;
+    padding: 10px 20px 100px 20px;
+    min-width: 320px;
+}
+
+.header{}
+
+.body{
+    display: flex;
+    gap: 15px;
+}
+
+.sidebar{
+    flex: 3 0 190px;
+}
+
+.tape {
+    flex: 12 0 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .container{
+        padding: 10px 5px 50px 5px;
+        margin-top: 5px;
+    }
+    .body{
+        flex-direction: column;
+    }
+    .sidebar{
+        flex: none;
+    }
+}

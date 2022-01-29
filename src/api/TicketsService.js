@@ -15,7 +15,7 @@ export default class TicketsService {
   static async getTickets(searchId){
     const response = await axios.get(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`)
     if (response.status === 200) {
-      return response.data //{tickets: Array(420), stop: false, error: false}
+      return {...response.data, tickets: response.data.tickets.slice(0, 5)} //{tickets: Array(420), stop: false, error: false}
     }
     throw new Error(response.statusText)
   } catch (e) {
