@@ -42,7 +42,7 @@
 1. Клонируем репозиторий
 
 ```sh
-git clone https://github.com/Perevoznikov/avisales_testwork.git
+git clone https://github.com/Perevoznikov/AviasalesTestwork.git
 ```
 
 2. Устанавливаем необходимые зависимости
